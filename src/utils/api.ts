@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import * as crypto from 'crypto';
 import * as vscode from 'vscode';
+import { IContestInfo, IContestStatus, IContestRanking } from '../types';
 
 export class CodeforcesAPI {
     private static instance: CodeforcesAPI;
@@ -131,13 +132,63 @@ export class CodeforcesAPI {
     }
 
     // 获取比赛列表
-    public async getContestList(): Promise<any> {
-        return this.makeRequest('contest.list', {}, false);
+    public async getContestList(): Promise<IContestInfo[]> {
+        const response = await this.makeRequest('contest.list', {}, false);
+        return response.result;
     }
 
     // 获取题目列表
     public async getProblemList(): Promise<any> {
         return this.makeRequest('problemset.problems', {}, false);
+    }
+
+    // 获取比赛详细信息
+    public async getContestStandings(
+        contestId: number,
+        from?: number,
+        count?: number,
+        handles?: string[]
+    ): Promise<{
+        contest: IContestInfo;
+        problems: any[];
+        rows: IContestRanking[];
+    }> {
+        const params: Record<string, string> = {
+            contestId: contestId.toString()
+        };
+
+        if (from !== undefined) {
+            params.from = from.toString();
+        }
+        if (count !== undefined) {
+            params.count = count.toString();
+        }
+        if (handles && handles.length > 0) {
+            params.handles = handles.join(';');
+        }
+
+        const response = await this.makeRequest('contest.standings', params, false);
+        return response.result;
+    }
+
+    // 获取比赛状态
+    public async getContestStatus(contestId: number): Promise<IContestStatus> {
+        const response = await this.makeRequest('contest.status', {
+            contestId: contestId.toString()
+        }, true);
+        return response.result;
+    }
+
+    // 注册比赛
+    public async registerForContest(contestId: number): Promise<boolean> {
+        try {
+            await this.makeRequest('contest.register', {
+                contestId: contestId.toString()
+            }, true);
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 
     // 更新网络设置

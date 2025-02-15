@@ -54,6 +54,61 @@
       {
         "command": "codeforces-for-vscode.resetSettings",
         "title": "Codeforces: Reset Settings"
+      },
+      {
+        "command": "codeforces.showContestList",
+        "title": "Codeforces: Show Contest List",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces.showContestDetail",
+        "title": "Codeforces: Show Contest Detail",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces.showProblemList",
+        "title": "Codeforces: Show Problem List",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces.registerContest",
+        "title": "Codeforces: Register for Contest",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces.refreshContests",
+        "title": "Codeforces: Refresh Contests",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces.showUpcomingContests",
+        "title": "Codeforces: Show Upcoming Contests",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces.showActiveContests",
+        "title": "Codeforces: Show Active Contests",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces.openContestPage",
+        "title": "Codeforces: Open Contest Page",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces.clearNotifications",
+        "title": "Codeforces: Clear Notifications",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces.showHelp",
+        "title": "Codeforces: Show Help",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces.showCommandPalette",
+        "title": "Codeforces: Show Command Palette",
+        "category": "Codeforces"
       }
     ],
     "configuration": {
@@ -133,8 +188,100 @@
               "description": "通知显示时间"
             }
           }
+        },
+        "codeforces-for-vscode.contest": {
+          "type": "object",
+          "description": "竞赛相关配置",
+          "properties": {
+            "autoRefresh": {
+              "type": "boolean",
+              "default": true,
+              "description": "是否自动刷新竞赛列表"
+            },
+            "refreshInterval": {
+              "type": "number",
+              "default": 300,
+              "description": "竞赛列表刷新间隔（秒）"
+            },
+            "notifications": {
+              "type": "object",
+              "default": {
+                "enabled": true,
+                "beforeStart": [15, 5, 1],
+                "beforeEnd": [15, 5, 1],
+                "statusChange": true,
+                "rankingChange": true
+              },
+              "description": "竞赛通知设置",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "description": "启用竞赛通知"
+                },
+                "beforeStart": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "竞赛开始前提醒时间（分钟）"
+                },
+                "beforeEnd": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "竞赛结束前提醒时间（分钟）"
+                },
+                "statusChange": {
+                  "type": "boolean",
+                  "description": "竞赛状态变更通知"
+                },
+                "rankingChange": {
+                  "type": "boolean",
+                  "description": "排名变更通知"
+                }
+              }
+            },
+            "cache": {
+              "type": "object",
+              "default": {
+                "maxAge": 600
+              },
+              "description": "竞赛缓存设置",
+              "properties": {
+                "maxAge": {
+                  "type": "number",
+                  "description": "缓存最大有效期（秒）"
+                }
+              }
+            }
+          }
         }
       }
+    },
+    "keybindings": [
+      {
+        "command": "codeforces.showCommandPalette",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "codeforces.showContestList",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codeforces.showUpcomingContests",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codeforces.showActiveContests",
+          "when": "editorTextFocus"
+        }
+      ]
     }
   },
   "scripts": {

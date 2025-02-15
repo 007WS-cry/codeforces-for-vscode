@@ -1,3 +1,5 @@
+import { ContestPhase, ContestType } from './contest';
+
 // API响应的基础接口
 export interface ApiResponse<T> {
     status: 'OK' | 'FAILED';
@@ -81,20 +83,6 @@ export interface SubmissionInfo {
 }
 
 // 枚举类型定义
-export enum ContestType {
-    CF = 'CF',
-    IOI = 'IOI',
-    ICPC = 'ICPC'
-}
-
-export enum ContestPhase {
-    BEFORE = 'BEFORE',
-    CODING = 'CODING',
-    PENDING_SYSTEM_TEST = 'PENDING_SYSTEM_TEST',
-    SYSTEM_TEST = 'SYSTEM_TEST',
-    FINISHED = 'FINISHED'
-}
-
 export enum ProblemType {
     PROGRAMMING = 'PROGRAMMING',
     QUESTION = 'QUESTION'
@@ -164,4 +152,19 @@ export class CodeforcesAPIError extends Error {
         super(message);
         this.name = 'CodeforcesAPIError';
     }
-} 
+}
+
+// 更新竞赛相关类型的导出
+export type {
+    IContestInfo,
+    IContestStatus,
+    IContestRanking,
+    IContestNotificationConfig,
+    IContestCache,
+    IContestManagerConfig
+} from './contest';
+
+export {
+    ContestPhase,
+    ContestType
+} from './contest'; 
