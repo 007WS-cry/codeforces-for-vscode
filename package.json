@@ -1,0 +1,173 @@
+{
+  "name": "codeforces-for-vscode",
+  "displayName": "Codeforces for VSCode",
+  "description": "This plugin allows you to participate in Codeforces contests and practice sessions directly within VS Code.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "dependencies": {
+    "axios": "^1.6.7",
+    "crypto-js": "^4.2.0",
+    "node-fetch": "^3.3.2",
+    "sha512": "^0.0.1"
+  },
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeforces-for-vscode.login",
+        "title": "Codeforces: Login"
+      },
+      {
+        "command": "codeforces-for-vscode.logout",
+        "title": "Codeforces: Logout"
+      },
+      {
+        "command": "codeforces-for-vscode.checkStatus",
+        "title": "Codeforces: Check Login Status"
+      },
+      {
+        "command": "codeforces-for-vscode.switchAccount",
+        "title": "Codeforces: Switch Account"
+      },
+      {
+        "command": "codeforces-for-vscode.setApiKey",
+        "title": "Codeforces: Set API Key"
+      },
+      {
+        "command": "codeforces-for-vscode.resetApiKey",
+        "title": "Codeforces: Reset API Key"
+      },
+      {
+        "command": "codeforces-for-vscode.validateApiKey",
+        "title": "Codeforces: Validate API Key"
+      },
+      {
+        "command": "codeforces-for-vscode.openSettings", 
+        "title": "Codeforces: Open Settings"
+      },
+      {
+        "command": "codeforces-for-vscode.resetSettings",
+        "title": "Codeforces: Reset Settings"
+      }
+    ],
+    "configuration": {
+      "title": "Codeforces for VSCode",
+      "properties": {
+        "codeforces-for-vscode.api": {
+          "type": "object", 
+          "description": "API相关配置",
+          "properties": {
+            "key": {
+              "type": "string", 
+              "default": "",
+              "description": "Codeforces API Key"
+            },
+            "secret": {
+              "type": "string",
+              "default": "",
+              "description": "Codeforces API Secret"
+            }
+          }
+        },
+        "codeforces-for-vscode.auth": {
+          "type": "object",
+          "description": "认证相关配置",
+          "properties": {
+            "autoLogin": {
+              "type": "boolean",
+              "default": false,
+              "description": "是否自动登录"
+            },
+            "rememberMe": {
+              "type": "boolean",
+              "default": true,
+              "description": "是否记住登陆状态"
+            }
+          }
+        },
+        "codeforces-for-vscode.network": {
+          "type": "object",
+          "description": "网络相关配置",
+          "properties": {
+            "timeout": {
+              "type": "number",
+              "default": 10000,
+              "description": "请求超时时间"
+            },
+            "proxy": {
+              "type": "object",
+              "description": "代理配置",
+              "properties": {
+                "enabled": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "是否启用代理"
+                },
+                "url": {
+                  "type": "string",
+                  "default": "",
+                  "description": "代理服务器地址"
+                }
+              }
+            }
+          }
+        },
+        "codeforces-for-vscode.notifications": {
+          "type": "object",
+          "description": "通知相关配置",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "是否启用通知"
+            },
+            "duration": {
+              "type": "number",
+              "default": 5000,
+              "description": "通知显示时间"
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext .ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "eslint": "^8.56.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-electron": "^2.3.9"
+  },
+  "publisher": "WS007-cry",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WS007-cry/codeforces-for-vscode"
+  },
+  "license": "MIT",
+  "keywords": [
+    "codeforces",
+    "competitive programming",
+    "algorithm",
+    "contest"
+  ]
+}
