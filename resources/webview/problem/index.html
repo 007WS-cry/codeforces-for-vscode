@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Viewer</title>
+    <style>
+        /* 基础样式，实际样式会从 styles.css 加载 */
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        .loading-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loading-container.active {
+            display: flex;
+        }
+
+        .error-container {
+            display: none;
+            padding: 1rem;
+            margin: 1rem;
+            border: 1px solid #ff0000;
+            background-color: #fff0f0;
+            color: #ff0000;
+            border-radius: 4px;
+        }
+
+        .error-container.active {
+            display: block;
+        }
+
+        .content-container {
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载指示器 -->
+    <div id="loading" class="loading-container">
+        <div class="loader"></div>
+        <div class="loading-text">Loading problem...</div>
+    </div>
+
+    <!-- 错误提示 -->
+    <div id="error" class="error-container"></div>
+
+    <!-- 主要内容区域 -->
+    <div id="content" class="content-container">
+        <!-- 题目头部信息 -->
+        <div id="problem-header" class="problem-header">
+            <h1 class="problem-title"></h1>
+            <div class="problem-meta">
+                <span class="time-limit"></span>
+                <span class="memory-limit"></span>
+                <span class="difficulty"></span>
+            </div>
+        </div>
+
+        <!-- 题目描述 -->
+        <div id="problem-content" class="problem-content"></div>
+
+        <!-- 输入规范 -->
+        <div id="input-specification" class="input-specification">
+            <h2>Input</h2>
+            <div class="input-content"></div>
+        </div>
+
+        <!-- 输出规范 -->
+        <div id="output-specification" class="output-specification">
+            <h2>Output</h2>
+            <div class="output-content"></div>
+        </div>
+
+        <!-- 样例 -->
+        <div id="problem-samples" class="samples-section">
+            <h2>Examples</h2>
+            <div class="samples"></div>
+        </div>
+
+        <!-- 注释 -->
+        <div id="problem-note" class="problem-note"></div>
+    </div>
+
+    <!-- MathJax 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            startup: {
+                typeset: false
+            }
+        };
+    </script>
+
+    <!-- 主题切换处理 -->
+    <script>
+        // 监听主题变化
+        window.addEventListener('message', event => {
+            const message = event.data;
+            if (message.type === 'themeChanged') {
+                document.body.setAttribute('data-vscode-theme-kind', message.data.theme);
+            }
+        });
+
+        // 复制样例处理
+        document.addEventListener('click', event => {
+            if (event.target.classList.contains('copy-button')) {
+                const sampleId = event.target.dataset.sampleId;
+                const sample = document.querySelector(`.sample[data-sample-index="${sampleId}"]`);
+                if (sample) {
+                    const input = sample.querySelector('.sample-input code').textContent;
+                    const vscode = acquireVsCodeApi();
+                    vscode.postMessage({
+                        type: 'copySample',
+                        data: { text: input }
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -12,6 +12,20 @@
 - 实时状态更新
 - 排名查看
 
+### 测试用例管理
+- 本地测试用例存储
+- 样例输入/输出验证
+- 批量测试运行
+- 测试结果分析
+- 性能数据统计
+
+### 难度系统
+- 题目难度显示
+- 难度趋势分析
+- 难度分布统计
+- 推荐难度计算
+- 进度可视化
+
 ### 通知系统
 - 竞赛开始提醒
 - 竞赛结束提醒
@@ -50,6 +64,18 @@
 - 查看正在进行的竞赛: `Codeforces: Show Active Contests`
 - 注册竞赛: 在竞赛详情页面点击 "Register" 按钮
 - 查看题目: 在竞赛详情页面点击 "Show Problems" 按钮
+
+### 测试功能
+- 运行测试: `Codeforces: Run Test Case`
+- 验证测试: `Codeforces: Validate Test Cases`
+- 查看结果: 在输出面板中查看详细结果
+- 性能分析: 查看执行时间和内存使用
+
+### 难度功能
+- 查看难度: `Codeforces: Show Problem Difficulty`
+- 查看趋势: `Codeforces: Show Difficulty Trend`
+- 难度统计: 在状态栏查看当前难度
+- 进度追踪: 通过图表查看进步情况
 
 ## 配置选项
 
@@ -103,6 +129,7 @@
 | 打开命令面板 | `Ctrl+Shift+C` | `Cmd+Shift+C` |
 | 刷新竞赛列表 | `Ctrl+R` | `Cmd+R` |
 | 显示帮助 | `Ctrl+Shift+H` | `Cmd+Shift+H` |
+| 运行测试 | `Ctrl+Alt+T` | `Cmd+Alt+T` |
 
 ## 问题反馈
 

@@ -1,4 +1,5 @@
 {
+  
   "name": "codeforces-for-vscode",
   "displayName": "Codeforces for VSCode",
   "description": "This plugin allows you to participate in Codeforces contests and practice sessions directly within VS Code.",
@@ -108,6 +109,26 @@
       {
         "command": "codeforces.showCommandPalette",
         "title": "Codeforces: Show Command Palette",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces-for-vscode.runTestCase",
+        "title": "Codeforces: Run Test Case",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces-for-vscode.validateTestCases",
+        "title": "Codeforces: Validate Test Cases",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces-for-vscode.showDifficulty",
+        "title": "Codeforces: Show Problem Difficulty",
+        "category": "Codeforces"
+      },
+      {
+        "command": "codeforces-for-vscode.showDifficultyTrend",
+        "title": "Codeforces: Show Difficulty Trend",
         "category": "Codeforces"
       }
     ],
@@ -270,15 +291,19 @@
     "menus": {
       "commandPalette": [
         {
-          "command": "codeforces.showContestList",
+          "command": "codeforces-for-vscode.showContestList",
           "when": "editorTextFocus"
         },
         {
-          "command": "codeforces.showUpcomingContests",
+          "command": "codeforces-for-vscode.runTestCase",
           "when": "editorTextFocus"
         },
         {
-          "command": "codeforces.showActiveContests",
+          "command": "codeforces-for-vscode.validateTestCases",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codeforces-for-vscode.showDifficulty",
           "when": "editorTextFocus"
         }
       ]

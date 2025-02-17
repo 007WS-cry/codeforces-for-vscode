@@ -1,0 +1,227 @@
+:root {
+    --border-color: #e0e0e0;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --meta-text-color: #666666;
+    --header-background: #f5f5f5;
+    --sample-border: #dcdcdc;
+    --button-hover: #e8e8e8;
+    --code-background: #f8f8f8;
+}
+
+body.vscode-dark {
+    --border-color: #3c3c3c;
+    --background-color: #1e1e1e;
+    --text-color: #cccccc;
+    --meta-text-color: #999999;
+    --header-background: #252526;
+    --sample-border: #3c3c3c;
+    --button-hover: #2a2a2a;
+    --code-background: #1a1a1a;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    padding: 0;
+    margin: 0;
+}
+
+/* 加载动画 */
+.loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-container.active {
+    display: flex;
+}
+
+.loader {
+    border: 4px solid var(--border-color);
+    border-top: 4px solid #0078d4;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: #ffffff;
+    margin-top: 1rem;
+}
+
+/* 错误提示 */
+.error-container {
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid #ff0000;
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff0000;
+    border-radius: 4px;
+    display: none;
+}
+
+.error-container.active {
+    display: block;
+}
+
+/* 内容容器 */
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* 题目头部 */
+.problem-header {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--header-background);
+    border-radius: 4px;
+}
+
+.problem-title {
+    margin: 0 0 1rem 0;
+    font-size: 1.8rem;
+    color: var(--text-color);
+}
+
+.problem-meta {
+    display: flex;
+    gap: 1rem;
+    color: var(--meta-text-color);
+    font-size: 0.9rem;
+}
+
+/* 难度标签 */
+.difficulty-tag {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+[data-difficulty="800"] { background-color: #43A047; color: white; }
+[data-difficulty="1200"] { background-color: #7CB342; color: white; }
+[data-difficulty="1600"] { background-color: #FDD835; color: black; }
+[data-difficulty="2000"] { background-color: #FB8C00; color: white; }
+[data-difficulty="2400"] { background-color: #E53935; color: white; }
+[data-difficulty="2800"] { background-color: #D81B60; color: white; }
+[data-difficulty="3200"] { background-color: #8E24AA; color: white; }
+
+/* 题目内容 */
+.problem-content {
+    margin-bottom: 2rem;
+}
+
+/* 输入输出规范 */
+.input-specification,
+.output-specification {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: var(--text-color);
+    margin: 1.5rem 0 1rem;
+    font-size: 1.4rem;
+}
+
+/* 样例部分 */
+.samples-section {
+    margin: 2rem 0;
+}
+
+.sample {
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--sample-border);
+    border-radius: 4px;
+}
+
+.sample-header {
+    padding: 0.5rem 1rem;
+    background: var(--header-background);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--sample-border);
+}
+
+.copy-button {
+    padding: 0.25rem 0.75rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.copy-button:hover {
+    background: var(--button-hover);
+}
+
+.sample-content {
+    padding: 1rem;
+}
+
+.sample-input,
+.sample-output,
+.sample-explanation {
+    margin-bottom: 1rem;
+}
+
+.sample-title {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+/* 代码块样式 */
+pre {
+    background: var(--code-background);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+}
+
+code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+/* 数学公式 */
+.MathJax {
+    font-size: 1.1rem !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .content-container {
+        padding: 1rem;
+    }
+
+    .problem-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .sample-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+} 

@@ -9,6 +9,12 @@ import {
 } from '../types';
 
 export class ContestManager {
+	showContestList() {
+		throw new Error('Method not implemented.');
+	}
+	showProblemList(contestId: number) {
+		throw new Error('Method not implemented.');
+	}
     private static instance: ContestManager;
     private cache: IContestCache;
     private config: IContestManagerConfig;
